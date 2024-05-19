@@ -1,0 +1,5 @@
+../source/FUNCTION_GENERATOR.c:12:6:ADC_DAC_init	4	static
+../source/FUNCTION_GENERATOR.c:16:6:set_freq	16	static
+../source/FUNCTION_GENERATOR.c:20:6:sin_function	4	static
+../source/FUNCTION_GENERATOR.c:24:6:triangle_function	4	static
+../source/FUNCTION_GENERATOR.c:28:6:square_function	4	static
