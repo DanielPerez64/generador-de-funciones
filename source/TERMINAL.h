@@ -55,7 +55,6 @@ http://graphcomp.com/info/specs/ansi_col.html
 /* UART instance and clock */
 
 #include <stdint.h>
-//#include "TIMER.h"
 
 /* text foreground color */
 #define vt_100_frgBlack 	"\033[30m"
@@ -99,8 +98,6 @@ http://graphcomp.com/info/specs/ansi_col.html
 void print_menu_terminal(void);
 
 void print_config_hora(void);
-
-//void print_ver_hora(time_struct *rtc);
 
 void print_config_alarma(void);
 

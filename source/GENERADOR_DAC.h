@@ -26,7 +26,7 @@
 #define DAC_BASEADDR DAC0
 
 /* inicializa y configura el DAC0 */
-void DAC_begin(void);
+void DAC_init(void);
 
 void analog_Write_DAC();
 

@@ -36,13 +36,11 @@ void handle_ADC(void){
 }
 
 void read_ADC(void){
+
 	Voltaje_out = ADC16_GetChannelConversionValue(ADC16, ADC16_CHANNEL_GROUP);
 }
 
-uint8_t get_amp(void){
-	uint8_t Amp;
+uint32_t get_amp(void){
 
-	Amp = Voltaje_out;
-
-	return Amp;
+	return Voltaje_out;
 }

@@ -23,6 +23,6 @@ void ADC_init(void);
 /* funciones de ejecucion */
 void handle_ADC(void);
 void read_ADC(void);
-uint8_t get_amp(void);
+uint32_t get_amp(void);
 
 #endif /* GENERADOR_ADC_H_ */

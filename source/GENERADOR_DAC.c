@@ -16,7 +16,7 @@
  */
 #include "GENERADOR_DAC.h"
 
-void DAC_begin(void){
+void DAC_init(void){
 
 	/* configura el DAC */
 	dac_config_t dacConfigStruct;

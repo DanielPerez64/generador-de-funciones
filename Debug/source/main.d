@@ -1,6 +1,6 @@
-source/FUNCTION_GENERATOR.o source/FUNCTION_GENERATOR.d: \
- ../source/FUNCTION_GENERATOR.c ../source/FUNCTION_GENERATOR.h \
- ../source/GENERADOR_DAC.h C:\TAE_DM\DAC\generador\board/pin_mux.h \
+source/main.o source/main.d: ../source/main.c \
+ ../source/FUNCTION_GENERATOR.h ../source/GENERADOR_DAC.h \
+ C:\TAE_DM\DAC\generador\board/pin_mux.h \
  C:\TAE_DM\DAC\generador\board/clock_config.h \
  C:\TAE_DM\DAC\generador\drivers/fsl_common.h \
  C:\TAE_DM\DAC\generador\device/fsl_device_registers.h \
@@ -18,7 +18,10 @@ source/FUNCTION_GENERATOR.o source/FUNCTION_GENERATOR.d: \
  C:\TAE_DM\DAC\generador\device/MK64F12.h \
  C:\TAE_DM\DAC\generador\drivers/fsl_adc16.h ../source/PIT.h \
  C:\TAE_DM\DAC\generador\drivers/fsl_pit.h \
- C:\TAE_DM\DAC\generador\drivers/fsl_clock.h
+ C:\TAE_DM\DAC\generador\drivers/fsl_clock.h ../source/TERMINAL.h \
+ ../source/UART_DRIVER.h ../source/NVIC.h \
+ C:\TAE_DM\DAC\generador\drivers/fsl_uart.h \
+ C:\TAE_DM\DAC\generador\drivers/fsl_port.h
 ../source/FUNCTION_GENERATOR.h:
 ../source/GENERADOR_DAC.h:
 C:\TAE_DM\DAC\generador\board/pin_mux.h:
@@ -42,3 +45,8 @@ C:\TAE_DM\DAC\generador\drivers/fsl_adc16.h:
 ../source/PIT.h:
 C:\TAE_DM\DAC\generador\drivers/fsl_pit.h:
 C:\TAE_DM\DAC\generador\drivers/fsl_clock.h:
+../source/TERMINAL.h:
+../source/UART_DRIVER.h:
+../source/NVIC.h:
+C:\TAE_DM\DAC\generador\drivers/fsl_uart.h:
+C:\TAE_DM\DAC\generador\drivers/fsl_port.h:
