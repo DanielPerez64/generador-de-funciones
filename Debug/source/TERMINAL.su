@@ -1,4 +1,5 @@
-../source/TERMINAL.c:17:6:print_menu_terminal	128	static
-../source/TERMINAL.c:48:6:print_config_hora	80	static
-../source/TERMINAL.c:67:6:terminal_print_text	16	static
-../source/TERMINAL.c:73:6:menu_terminal	16	static
+../source/TERMINAL.c:20:6:terminal_print_text	16	static
+../source/TERMINAL.c:26:6:menu_terminal	8	static
+../source/TERMINAL.c:113:13:show_menu	104	static
+../source/TERMINAL.c:129:13:show_set_freq	168	static
+../source/TERMINAL.c:157:13:show_set_signal	144	static

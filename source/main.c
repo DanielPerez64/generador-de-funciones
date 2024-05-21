@@ -4,14 +4,15 @@
  *
  * Generador de funciones
  */
-#include "FUNCTION_GENERATOR.h"
-#include "TERMINAL.h"
-#include "UART_DRIVER.h"
+#include "GENERATOR.h"
 
 int main(void){
 
-	BOARD_InitBootPins();
-	BOARD_InitBootClocks();
+	config_peripherics();
+
+	while(1){
+		run_app();
+	}
 
 	return 0;
 }

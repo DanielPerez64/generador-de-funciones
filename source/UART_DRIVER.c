@@ -58,3 +58,7 @@ void set_flag(uint8_t set){
 	g_mail_box_uart_0.flag = set;
 }
 
+void clear_flag(void){
+	g_mail_box_uart_0.flag = false;
+}
+

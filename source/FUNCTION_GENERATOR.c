@@ -23,6 +23,12 @@ void generator_init(void){
 	PIT_init(clock_pit);
 }
 
+void function_start(void){
+	start_timer();
+
+
+}
+
 void set_config_amplitude(void){
 	signal_config.amplitude = get_amp(); //get form ADC the value of potentiometer
 }
@@ -37,10 +43,6 @@ void sin_function(void){
 
 void triangle_function(void){
 
-//	if( signal_config.frequency/8 == get_count_value()){
-//
-//	}
-
 }
 
 void square_function(void){
@@ -52,4 +54,11 @@ void square_function(void){
 		analog_Write_DAC(ZERO_VOLTS);
 	}
 
+}
+
+/* get status functions */
+
+uint8_t get_function_status(void){
+
+	return signal_config.function;
 }

@@ -1,4 +1,4 @@
-source/main.o source/main.d: ../source/main.c \
+source/main.o source/main.d: ../source/main.c ../source/GENERATOR.h \
  ../source/FUNCTION_GENERATOR.h ../source/GENERADOR_DAC.h \
  C:\TAE_DM\DAC\generador\board/pin_mux.h \
  C:\TAE_DM\DAC\generador\board/clock_config.h \
@@ -22,6 +22,7 @@ source/main.o source/main.d: ../source/main.c \
  ../source/UART_DRIVER.h ../source/NVIC.h \
  C:\TAE_DM\DAC\generador\drivers/fsl_uart.h \
  C:\TAE_DM\DAC\generador\drivers/fsl_port.h
+../source/GENERATOR.h:
 ../source/FUNCTION_GENERATOR.h:
 ../source/GENERADOR_DAC.h:
 C:\TAE_DM\DAC\generador\board/pin_mux.h:

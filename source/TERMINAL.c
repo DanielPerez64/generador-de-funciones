@@ -7,62 +7,15 @@
 
 #include "TERMINAL.h"
 #include "UART_DRIVER.h"
+#include "FUNCTION_GENERATOR.h"
 /*******************************************************************************
  * Code
  ******************************************************************************/
 
-/*!
- * @brief Main function
- */
-void print_menu_terminal(void)
-{
+// fsm menu variable
+menu_states fsm_menu = MENU_ST;
 
-	const uint8_t screen_txt1[] 		= "1. Configurar hora\r";
-	const uint8_t screen_txt2[] 		= "2. Ver hora\r";
-	const uint8_t screen_txt3[] 		= "3. Configurar alarma\r";
-	const uint8_t config_screen[] 		= vt_100_clear;
-	const uint8_t posxy_1[]				= "\033[10;21H";
-	const uint8_t posxy_2[]				= "\033[11;21H";
-	const uint8_t posxy_3[]				= "\033[12;21H";
-	const uint8_t background[]			= vt_100_bkgBlue;
-
-    /* Send g_tipString out. */
-
-	UART_WriteBlocking(UART0, config_screen, sizeof(config_screen)/sizeof(config_screen[0]));
-
-    UART_WriteBlocking(UART0, posxy_1, 		 sizeof(posxy_1)/sizeof(posxy_1[0]));
-    UART_WriteBlocking(UART0, background,	 sizeof(background)/sizeof(background[0]));
-    UART_WriteBlocking(UART0, config_screen, sizeof(config_screen)/sizeof(config_screen[0]));
-    UART_WriteBlocking(UART0, screen_txt1,   sizeof(screen_txt1)/sizeof(screen_txt1[0]));
-
-
-    UART_WriteBlocking(UART0, posxy_2, 		 sizeof(posxy_2)/sizeof(posxy_2[0]));
-	UART_WriteBlocking(UART0, screen_txt2,   sizeof(screen_txt2)/sizeof(screen_txt2[0]));
-
-	UART_WriteBlocking(UART0, posxy_3, 		 sizeof(posxy_3)/sizeof(posxy_3[0]));
-	UART_WriteBlocking(UART0, screen_txt3,   sizeof(screen_txt3)/sizeof(screen_txt3[0]));
-
-
-}
-
-void print_config_hora(void){
-	const uint8_t screen_txt1[] 		= "Ingrese por favor la hora:\r";
-	const uint8_t config_screen[] 		= vt_100_clear;
-	const uint8_t posxy_1[]				= "\033[10;21H";
-	const uint8_t config_font[]			= "\033[1;30m";
-	const uint8_t background[]			= vt_100_bkgWhite;
-
-	/* Send g_tipString out. */
-
-	UART_WriteBlocking(UART0, config_screen, sizeof(config_screen)/sizeof(config_screen[0]));
-
-	UART_WriteBlocking(UART0, posxy_1, 		 sizeof(posxy_1)/sizeof(posxy_1[0]));
-	UART_WriteBlocking(UART0, background,	 sizeof(background)/sizeof(background[0]));
-	UART_WriteBlocking(UART0, config_font,   sizeof(config_font)/sizeof(config_font[0]));
-	UART_WriteBlocking(UART0, config_screen, sizeof(config_screen)/sizeof(config_screen[0]));
-	UART_WriteBlocking(UART0, screen_txt1,   sizeof(screen_txt1)/sizeof(screen_txt1[0]));
-
-}
+/* function implementation*/
 
 void terminal_print_text(uint8_t *message, uint8_t length){
 
@@ -72,133 +25,158 @@ void terminal_print_text(uint8_t *message, uint8_t length){
 
 void menu_terminal(void){
 
-	typedef enum states_menu{
-		MENU_ST,
-		FREQ_CONFIG,
-		SELECT_SIGNAL
-	} menu_states;
-
-	menu_states fsm_menu = MENU_ST;
 
 	switch(fsm_menu){
 
 		case MENU_ST:
 
-			if(get_flag()){
+			show_menu();
+			while(!get_flag()); // wait for something on mailbox
 
-				//print menu
+			if('1' == get_mail()){
 
-				switch(get_mail()){
+				fsm_menu = FREQ_CONFIG;
+			}
+			else if('2' == get_mail()){
 
-					case '1':
-						//print option 1
-						fsm_menu = FREQ_CONFIG;
-						break;
-
-					case '2':
-						//print option 2
-						fsm_menu = SELECT_SIGNAL;
-						break;
-
-					case '\e':
-						fsm_menu = MENU_ST;
-						break;
-				}
+				fsm_menu = SELECT_SIGNAL;
 			}
 
+			clear_flag();
 			break;
 
 		case FREQ_CONFIG:
+			show_set_freq();
 
-			if(true == get_flag()){
+			while(!get_flag()); //wait for mailbox
 
-				switch(get_mail()){
-
-					case '1':
-						//print option 1
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar frecuencia
-							}
-						}
-						break;
-
-					case '2':
-						//print option 2
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar frecuencia
-							}
-						}
-						break;
-
-					case '3':
-						//print option 3
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar frecuencia
-							}
-						}
-						break;
-
-					case '4':
-						//print option 4
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar frecuencia
-							}
-						}
-						break;
-				}
+			if('\e' == get_mail()){
+				fsm_menu = MENU_ST;
+			}
+			else if(ASCII_1 == get_mail()){
+				// set the frequency
+				set_config_period(_1KHZ);
+				// ask for confirmation
+			}
+			else if(ASCII_2 == get_mail()){
+				// set the frequency
+				set_config_period(_5KHZ);
+				// ask for confirmation
+			}
+			else if(ASCII_3 == get_mail()){
+				// set the frequency
+				set_config_period(_10KHZ);
+				// ask for confirmation
+			}
+			else if(ASCII_4 == get_mail()){
+				// set the frequency
+				set_config_period(_100KHZ);
+				// ask for confirmation
+			}
+			else{
+				fsm_menu = FREQ_CONFIG;
 			}
 
 			break;
 
 		case SELECT_SIGNAL:
 
-			if(true == get_flag()){
+			show_set_signal();
+			while(!get_flag()); //wait for mailbox
 
-				switch(get_mail()){
-
-					 case '1':
-						//print option 1
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la senal
-								//configurar senal
-							}
-						}
-						break;
-
-					case '2':
-						//print option 2
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar senal
-							}
-						}
-						break;
-
-					case '3':
-						//print option 3
-						while(!get_flag()){
-							if('\r' == get_mail()){
-								//print text: se ha seleccionado la frecuencia
-								//configurar senal
-							}
-						}
-						break;
-
-				}
+			if('\e' == get_mail()){
+				fsm_menu = MENU_ST;
+			}
+			else if(ASCII_1 == get_mail()){
+				// set the signal
+				// ask for confirmation
+			}
+			else if(ASCII_2 == get_mail()){
+				// set the signal
+				// ask for confirmation
+			}
+			else if(ASCII_3 == get_mail()){
+				// set the signal
+				// ask for confirmation
+			}
+			else{
+				fsm_menu = SELECT_SIGNAL;
 			}
 
+			clear_flag();
 			break;
 
 	}
+
+}
+
+static void show_menu(void){
+	uint8_t clear[]			= vt_100_clear;
+	uint8_t text1[] 		= "1. Seleccione frecuencia.";
+	uint8_t text2[] 		= "2. Seleccion de senial.";
+	uint8_t posxy_1[]		= "\033[10;21H";
+	uint8_t posxy_2[]		= "\033[11;21H";
+
+	/* PRINT TEXT TO THE UART */
+	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0]));
+	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
+	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
+	terminal_print_text(posxy_2, 	sizeof(posxy_2)/sizeof(posxy_2[0]));
+	terminal_print_text(text2, 		sizeof(text2)/sizeof(text2[0]));
+
+}
+
+static void show_set_freq(void){
+	uint8_t clear[]			= vt_100_clear;
+	uint8_t text1[] 		= "Seleccione frecuencia a generar.";
+	uint8_t text2[] 		= "1. 1KHz.";
+	uint8_t text3[] 		= "2. 5KHz.";
+	uint8_t text4[] 		= "3. 10KHz.";
+	uint8_t text5[] 		= "4. 100KHz.";
+	uint8_t posxy_1[]		= "\033[10;21H";
+	uint8_t posxy_2[]		= "\033[12;21H";
+	uint8_t posxy_3[]		= "\033[13;21H";
+	uint8_t posxy_4[]		= "\033[14;21H";
+	uint8_t posxy_5[]		= "\033[15;21H";
+
+	/* PRINT TEXT TO THE UART */
+	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0])); //clear screen
+	/* print the message*/
+	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
+	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
+	terminal_print_text(posxy_2, 	sizeof(posxy_2)/sizeof(posxy_2[0]));
+	terminal_print_text(text2, 		sizeof(text2)/sizeof(text2[0]));
+	terminal_print_text(posxy_3, 	sizeof(posxy_3)/sizeof(posxy_3[0]));
+	terminal_print_text(text3, 		sizeof(text3)/sizeof(text3[0]));
+	terminal_print_text(posxy_4, 	sizeof(posxy_4)/sizeof(posxy_4[0]));
+	terminal_print_text(text4, 		sizeof(text4)/sizeof(text4[0]));
+	terminal_print_text(posxy_5, 	sizeof(posxy_5)/sizeof(posxy_5[0]));
+	terminal_print_text(text5, 		sizeof(text5)/sizeof(text5[0]));
+}
+
+static void show_set_signal(void){
+	uint8_t clear[]			= vt_100_clear;
+	uint8_t text1[] 		= "Selecciona la senial.";
+	uint8_t text2[] 		= "1. Senoidal.";
+	uint8_t text3[] 		= "2. Triangular.";
+	uint8_t text4[] 		= "3. Cuadrada.";
+
+	uint8_t posxy_1[]		= "\033[10;21H";
+	uint8_t posxy_2[]		= "\033[12;21H";
+	uint8_t posxy_3[]		= "\033[13;21H";
+	uint8_t posxy_4[]		= "\033[14;21H";
+
+	/* PRINT TEXT TO THE UART */
+	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0])); // clear screen
+	// print the message
+	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
+	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
+	terminal_print_text(posxy_2, 	sizeof(posxy_2)/sizeof(posxy_2[0]));
+	terminal_print_text(text2, 		sizeof(text2)/sizeof(text2[0]));
+
+	terminal_print_text(posxy_3, 	sizeof(posxy_3)/sizeof(posxy_3[0]));
+	terminal_print_text(text3, 		sizeof(text3)/sizeof(text3[0]));
+	terminal_print_text(posxy_4, 	sizeof(posxy_4)/sizeof(posxy_4[0]));
+	terminal_print_text(text4, 		sizeof(text4)/sizeof(text4[0]));
 
 }

@@ -7,6 +7,7 @@ C_SRCS += \
 ../source/FUNCTION_GENERATOR.c \
 ../source/GENERADOR_ADC.c \
 ../source/GENERADOR_DAC.c \
+../source/GENERATOR.c \
 ../source/NVIC.c \
 ../source/PIT.c \
 ../source/TERMINAL.c \
@@ -18,6 +19,7 @@ C_DEPS += \
 ./source/FUNCTION_GENERATOR.d \
 ./source/GENERADOR_ADC.d \
 ./source/GENERADOR_DAC.d \
+./source/GENERATOR.d \
 ./source/NVIC.d \
 ./source/PIT.d \
 ./source/TERMINAL.d \
@@ -29,6 +31,7 @@ OBJS += \
 ./source/FUNCTION_GENERATOR.o \
 ./source/GENERADOR_ADC.o \
 ./source/GENERADOR_DAC.o \
+./source/GENERATOR.o \
 ./source/NVIC.o \
 ./source/PIT.o \
 ./source/TERMINAL.o \
@@ -49,7 +52,7 @@ source/%.o: ../source/%.c source/subdir.mk
 clean: clean-source
 
 clean-source:
-	-$(RM) ./source/FUNCTION_GENERATOR.d ./source/FUNCTION_GENERATOR.o ./source/GENERADOR_ADC.d ./source/GENERADOR_ADC.o ./source/GENERADOR_DAC.d ./source/GENERADOR_DAC.o ./source/NVIC.d ./source/NVIC.o ./source/PIT.d ./source/PIT.o ./source/TERMINAL.d ./source/TERMINAL.o ./source/UART_DRIVER.d ./source/UART_DRIVER.o ./source/main.d ./source/main.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o
+	-$(RM) ./source/FUNCTION_GENERATOR.d ./source/FUNCTION_GENERATOR.o ./source/GENERADOR_ADC.d ./source/GENERADOR_ADC.o ./source/GENERADOR_DAC.d ./source/GENERADOR_DAC.o ./source/GENERATOR.d ./source/GENERATOR.o ./source/NVIC.d ./source/NVIC.o ./source/PIT.d ./source/PIT.o ./source/TERMINAL.d ./source/TERMINAL.o ./source/UART_DRIVER.d ./source/UART_DRIVER.o ./source/main.d ./source/main.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o
 
 .PHONY: clean-source
 

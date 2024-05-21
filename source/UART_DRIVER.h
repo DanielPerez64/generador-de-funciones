@@ -35,4 +35,6 @@ uint8_t get_flag(void);
 
 void set_flag(uint8_t set);
 
+void clear_flag(void);
+
 #endif /* UART_DRIVER_H_ */

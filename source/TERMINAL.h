@@ -5,56 +5,17 @@
  *      Author: dany-
  */
 
-/********************************************************************************************************
-*********************************************************************************************************
-*********************************************************************************************************
-Set Display Attributes
-Set Attribute Mode	<ESC>[{attr1};...;{attrn}m
-Sets multiple display attribute settings. The following lists standard attributes:
-0	Reset all attributes
-1	Bright
-2	Dim
-4	Underscore
-5	Blink
-7	Reverse
-8	Hidden
-
-	Foreground Colors
-30	Black
-31	Red
-32	Green
-33	Yellow
-34	Blue
-35	Magenta
-36	Cyan
-37	White
-
-	Background Colors
-40	Black
-41	Red
-42	Green
-43	Yellow
-44	Blue
-45	Magenta
-46	Cyan
-47	White
-
-SOURCE:
-http://graphcomp.com/info/specs/ansi_col.html
-
-*********************************************************************************************************
-*********************************************************************************************************
-*********************************************************************************************************/
+/*********************************************************************************************************/
 
 #ifndef TERMINAL_H_
 #define TERMINAL_H_
 
+/* HEADER FILES */
+#include <stdint.h>
+
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
-/* UART instance and clock */
-
-#include <stdint.h>
 
 /* text foreground color */
 #define vt_100_frgBlack 	"\033[30m"
@@ -91,18 +52,28 @@ http://graphcomp.com/info/specs/ansi_col.html
 #define ASCII_8				56u
 #define ASCII_9				57u
 
-#define ASCII_CR			13u
+#define ASCII_ENTER			13u
 #define ASCII_ESC			27u
 
+// enum for menu states
+typedef enum states_menu{
+		MENU_ST,
+		FREQ_CONFIG,
+		SELECT_SIGNAL
+	} menu_states;
 
-void print_menu_terminal(void);
-
-void print_config_hora(void);
-
-void print_config_alarma(void);
-
+/* terminal various functions */
 void terminal_print_text(uint8_t *message, uint8_t length);
 
 void menu_terminal(void);
+
+/* MAIN MENUS */
+static void show_menu(void);
+
+/* FREQUENCY SELECTION MENU */
+static void show_set_freq(void);
+
+/* SIGNAL SELECTION MENU */
+static void show_set_signal(void);
 
 #endif /* TERMINAL_H_ */

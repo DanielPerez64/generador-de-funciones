@@ -53,7 +53,7 @@ void PIT_init(uint32_t clock_pit)
 	/* Enable timer interrupts for channel 0 */
 	PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);
 
-	PIT_StartTimer(PIT, kPIT_Chnl_0);
+	//PIT_StartTimer(PIT, kPIT_Chnl_0);
 
 }
 
