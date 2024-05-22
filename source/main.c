@@ -9,9 +9,13 @@
 int main(void){
 
 	config_peripherics();
+	function_start(); // inicia el timer unicamente
 
 	while(1){
-		run_app();
+
+		handle_signal(); // no estoy seguro si esta implementacion es correcta
+		run_config_loop(); // aqui se corre la maquina de estados correspondiente al menu y eso
+
 	}
 
 	return 0;

@@ -2,7 +2,7 @@
  * GENERATOR.h
  *
  *  Created on: 20 may. 2024
- *      Author: dany-
+ *      Author: Pablo Daniel Perez
  */
 
 #ifndef GENERATOR_H_
@@ -14,6 +14,8 @@
 
 void config_peripherics(void);
 
-void run_app(void);
+void run_config_loop(void);
+
+void handle_signal(void);
 
 #endif /* GENERATOR_H_ */

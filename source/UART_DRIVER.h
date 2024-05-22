@@ -2,7 +2,7 @@
  * UART_DRIVER.h
  *
  *  Created on: 14 may. 2024
- *      Author: dany-
+ *      Author: Pablo Daniel Perez
  */
 
 #ifndef UART_DRIVER_H_
@@ -35,6 +35,8 @@ uint8_t get_flag(void);
 
 void set_flag(uint8_t set);
 
+/* eraser function */
 void clear_flag(void);
+void clear_mail(void);
 
 #endif /* UART_DRIVER_H_ */

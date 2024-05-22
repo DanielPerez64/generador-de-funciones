@@ -5,9 +5,9 @@ C:\TAE_DM\DAC\generador\drivers/fsl_pit.h:246:20:PIT_SetTimerPeriod	24	static
 C:\TAE_DM\DAC\generador\drivers/fsl_pit.h:266:24:PIT_GetCurrentTimerCount	16	static
 C:\TAE_DM\DAC\generador\drivers/fsl_pit.h:288:20:PIT_StartTimer	16	static
 ../source/PIT.c:12:6:PIT0_IRQHandler	8	static
-../source/PIT.c:26:6:PIT_clear_irq_status	16	static
-../source/PIT.c:31:9:PIT_get_irq_status	16	static
-../source/PIT.c:37:6:PIT_init	56	static
-../source/PIT.c:60:10:get_count_value	16	static
-../source/PIT.c:73:6:set_period	32	static
-../source/PIT.c:78:6:start_timer	8	static
+../source/PIT.c:27:6:PIT_clear_irq_status	16	static
+../source/PIT.c:32:9:PIT_get_irq_status	16	static
+../source/PIT.c:38:6:PIT_init	56	static
+../source/PIT.c:61:10:get_count_value	16	static
+../source/PIT.c:74:6:set_period	32	static
+../source/PIT.c:79:6:start_timer	8	static

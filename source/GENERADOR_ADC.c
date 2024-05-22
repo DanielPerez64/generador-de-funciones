@@ -2,7 +2,7 @@
  * GENERADOR_ADC.c
  *
  *  Created on: 18 may. 2024
- *      Author: dany-
+ *     Author: Pablo Daniel Perez
  */
 
 #include "GENERADOR_ADC.h"
@@ -10,10 +10,11 @@
 
 
 static volatile uint32_t Voltaje_out;
+static adc16_config_t adc16ConfigStruct;
+static adc16_channel_config_t adc16ChannelConfigStruct;
 
 void ADC_init(void){
-	adc16_config_t adc16ConfigStruct;
-	adc16_channel_config_t adc16ChannelConfigStruct;
+
 
 	ADC16_GetDefaultConfig(&adc16ConfigStruct);
 
@@ -31,12 +32,12 @@ void ADC_init(void){
 
 }
 
-void handle_ADC(void){
-
-}
-
 void read_ADC(void){
-
+	ADC16_SetChannelConfig(ADC16, ADC16_CHANNEL_GROUP, &adc16ChannelConfigStruct);
+	while (0U == (kADC16_ChannelConversionDoneFlag &
+				  ADC16_GetChannelStatusFlags(ADC16, ADC16_CHANNEL_GROUP)))
+	{
+	}
 	Voltaje_out = ADC16_GetChannelConversionValue(ADC16, ADC16_CHANNEL_GROUP);
 }
 

@@ -2,7 +2,7 @@
  * TERMINAL.h
  *
  *  Created on: 14 may. 2024
- *      Author: dany-
+ *      Author: Pablo Daniel Perez
  */
 
 /*********************************************************************************************************/
@@ -75,5 +75,10 @@ static void show_set_freq(void);
 
 /* SIGNAL SELECTION MENU */
 static void show_set_signal(void);
+
+/* SELECTION ASSERTED */
+static void selection_msg(void);
+
+static void idle_until_enter(void);
 
 #endif /* TERMINAL_H_ */

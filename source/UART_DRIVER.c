@@ -2,7 +2,7 @@
  * UART_DRIVER.c
  *
  *  Created on: 14 may. 2024
- *      Author: dany-
+ *      Author: Pablo Daniel Perez
  */
 #include "UART_DRIVER.h"
 
@@ -62,3 +62,6 @@ void clear_flag(void){
 	g_mail_box_uart_0.flag = false;
 }
 
+void clear_mail(void){
+	g_mail_box_uart_0.mail_box = 0;
+}

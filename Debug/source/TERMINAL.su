@@ -1,5 +1,7 @@
 ../source/TERMINAL.c:20:6:terminal_print_text	16	static
 ../source/TERMINAL.c:26:6:menu_terminal	8	static
-../source/TERMINAL.c:113:13:show_menu	104	static
-../source/TERMINAL.c:129:13:show_set_freq	168	static
-../source/TERMINAL.c:157:13:show_set_signal	144	static
+../source/TERMINAL.c:145:13:show_menu	104	static
+../source/TERMINAL.c:161:13:show_set_freq	168	static
+../source/TERMINAL.c:189:13:show_set_signal	144	static
+../source/TERMINAL.c:216:13:selection_msg	88	static
+../source/TERMINAL.c:229:13:idle_until_enter	8	static

@@ -2,7 +2,7 @@
  * FUNCTION_GENERATOR.h
  *
  *  Created on: 18 may. 2024
- *      Author: dany-
+ *      Author: Pablo Daniel Perez
  */
 
 #ifndef FUNCTION_GENERATOR_H_
@@ -14,8 +14,9 @@
 #include "fsl_clock.h"
 #include <stdint.h>
 
-#define DELTA			32U
+#define DELTA			16U
 #define ZERO_VOLTS		0
+#define FIX_POINT_SCALE	256U
 
 /*
  * This structure contains the configuration for the generator to set a function to work
@@ -48,6 +49,9 @@ typedef enum period_options{
 
 void generator_init(void);
 
+/* RUN the signal  */
+void run_signal(void);
+
 /* HANDLE the functions to be used */
 void function_start(void);
 /* reset the signal with new configuration */
@@ -55,6 +59,7 @@ void function_restart(void);
 
 /* */
 void set_config_amplitude(void);
+void set_signal(uint8_t signal);
 void set_config_period(uint32_t period);
 
 

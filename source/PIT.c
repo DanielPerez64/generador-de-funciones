@@ -14,6 +14,7 @@ void PIT0_IRQHandler(void)
     /* Clear interrupt flag.*/
     PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
     pitIsrFlag = true;
+
     /* Added for, and affects, all PIT handlers. For CPU clock which is much larger than the IP bus clock,
      * CPU can run out of the interrupt handler before the interrupt flag being cleared, resulting in the
      * CPU's entering the handler again and again. Adding DSB can prevent the issue from happening.
