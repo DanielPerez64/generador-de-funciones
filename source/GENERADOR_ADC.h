@@ -20,7 +20,7 @@
 /* Funciones de configuracion*/
 void ADC_init(void);
 
-/* funciones de ejecucion */
+/* polling ADC function */
 void handle_ADC(void);
 void read_ADC(void);
 uint32_t get_amp(void);

@@ -13,7 +13,7 @@
  ******************************************************************************/
 
 // fsm menu variable
-menu_states fsm_menu = MENU_ST;
+static menu_states fsm_menu = MENU_ST;
 
 /* function implementation*/
 
@@ -69,6 +69,7 @@ void menu_terminal(void){
 
 				// tell user that frequency has been selected
 				clear_flag();
+				//stop_timer();
 				idle_until_enter();
 				// set the frequency
 				set_config_period(_1KHZ);
@@ -79,9 +80,10 @@ void menu_terminal(void){
 
 				// tell user that frequency has been selected
 				clear_flag();
+				//stop_timer();
 				idle_until_enter();
 				// set the frequency
-				set_config_period(_5KHZ);
+				set_config_period(_500HZ);
 				clear_mail();
 
 			}
@@ -91,7 +93,7 @@ void menu_terminal(void){
 				clear_flag();
 				idle_until_enter();
 				// set the frequency
-				set_config_period(_10KHZ);
+				set_config_period(_250HZ);
 				clear_mail();
 
 			}
@@ -101,7 +103,7 @@ void menu_terminal(void){
 				clear_flag();
 				idle_until_enter();
 				// set the frequency
-				set_config_period(_100KHZ);
+				set_config_period(_100HZ);
 				clear_mail();
 
 			}
@@ -188,9 +190,9 @@ void show_set_freq(void){
 	uint8_t clear[]			= vt_100_clear;
 	uint8_t text1[] 		= "Seleccione frecuencia a generar.";
 	uint8_t text2[] 		= "1. 1KHz.";
-	uint8_t text3[] 		= "2. 5KHz.";
-	uint8_t text4[] 		= "3. 10KHz.";
-	uint8_t text5[] 		= "4. 100KHz.";
+	uint8_t text3[] 		= "2. 500Hz.";
+	uint8_t text4[] 		= "3. 250Hz.";
+	uint8_t text5[] 		= "4. 100Hz.";
 	uint8_t posxy_1[]		= "\033[10;21H";
 	uint8_t posxy_2[]		= "\033[12;21H";
 	uint8_t posxy_3[]		= "\033[13;21H";
@@ -198,7 +200,7 @@ void show_set_freq(void){
 	uint8_t posxy_5[]		= "\033[15;21H";
 
 	/* PRINT TEXT TO THE UART */
-	terminal_print_text(clear, 		sizeof(clear)/sizeof(clear[0])); //clear screen
+	terminal_print_text(clear, 		SIZE_CLEAR); //clear screen
 	/* print the message*/
 	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
 	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));

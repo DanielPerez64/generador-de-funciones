@@ -1,6 +1,8 @@
 /*
  * GENERATOR.c
  *
+ *	Application layer
+ *
  *  Created on: 20 may. 2024
  *      Author: Pablo Daniel Perez
  */

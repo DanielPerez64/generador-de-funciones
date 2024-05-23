@@ -3,6 +3,9 @@
  *
  *  Created on: 18 may. 2024
  *      Author: Pablo Daniel Perez
+ *
+ *	It handles every misc and configuration related to the run of signals
+ *
  */
 
 #include "FUNCTION_GENERATOR.h"
@@ -47,7 +50,7 @@ void run_signal(void){
 
 void next_sample(void){
 
-	signal_config.index = (signal_config.index + 1) % MAX_COUNT;
+	signal_config.index = (signal_config.index + 1) % MAX_COUNT; //conteo de muestras
 
 }
 
@@ -91,7 +94,7 @@ void triangle_function(void){
 
 void square_function(void){
 
-	if( square_sig_st ){ // if its true then...
+	if( signal_config.index < DELTA/HALF_PERIOD ){ // if its true then...
 		uint32_t write_square = signal_config.amplitude;
 		analog_Write_DAC( write_square );
 		square_sig_st = false;

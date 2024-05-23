@@ -55,6 +55,8 @@
 #define ASCII_ENTER			13u
 #define ASCII_ESC			27u
 
+#define SIZE_CLEAR			8u
+
 // enum for menu states
 typedef enum states_menu{
 		MENU_ST,

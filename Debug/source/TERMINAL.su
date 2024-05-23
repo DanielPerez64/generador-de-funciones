@@ -1,7 +1,7 @@
 ../source/TERMINAL.c:20:6:terminal_print_text	16	static
 ../source/TERMINAL.c:26:6:menu_terminal	8	static
-../source/TERMINAL.c:171:6:show_menu	104	static
-../source/TERMINAL.c:187:6:show_set_freq	168	static
-../source/TERMINAL.c:215:6:show_set_signal	144	static
-../source/TERMINAL.c:242:6:selection_msg	88	static
-../source/TERMINAL.c:255:6:idle_until_enter	8	static
+../source/TERMINAL.c:173:6:show_menu	104	static
+../source/TERMINAL.c:189:6:show_set_freq	168	static
+../source/TERMINAL.c:217:6:show_set_signal	144	static
+../source/TERMINAL.c:244:6:selection_msg	88	static
+../source/TERMINAL.c:257:6:idle_until_enter	8	static

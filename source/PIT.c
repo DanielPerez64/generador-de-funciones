@@ -15,8 +15,10 @@ void PIT0_IRQHandler(void)
     /* Clear interrupt flag.*/
     PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
 
-    //read_ADC(); // get the ADC current value
-    run_signal();
+    // get the ADC current value
+    read_ADC();
+	set_config_amplitude(); //then set the value to the struct config_signal
+    run_signal();	// do the run of the signal
     next_sample(); // move to the next sample
 
     pitIsrFlag = true;
@@ -85,4 +87,8 @@ void set_period(uint32_t period, uint32_t clock_pit){
 void start_timer(void){
 
 	PIT_StartTimer(PIT, kPIT_Chnl_0);
+}
+
+void stop_timer(void){
+	PIT_StopTimer(PIT, kPIT_Chnl_0);
 }

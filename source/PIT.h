@@ -39,5 +39,7 @@ void set_period(uint32_t period, uint32_t clock_pit);
 
 void start_timer(void);
 
+void stop_timer(void);
+
 
 #endif /* PIT_H_ */

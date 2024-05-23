@@ -18,6 +18,7 @@
 #define ZERO_VOLTS		0
 #define FIX_POINT_SCALE	256U
 #define MAX_COUNT		16U
+#define HALF_PERIOD		2U
 
 /*
  * This structure contains the configuration for the generator to set a function to work
@@ -45,9 +46,9 @@ typedef enum function_select{
 typedef enum period_options{
 
 	_1KHZ 	= 1000u,
-	_5KHZ 	= 200u,
-	_10KHZ	= 100u,
-	_100KHZ = 10u
+	_500HZ 	= 2000u,
+	_250HZ	= 4000u,
+	_100HZ 	= 10000u
 
 } periods;
 
