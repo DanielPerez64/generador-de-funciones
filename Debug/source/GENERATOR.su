@@ -1,3 +1,3 @@
 ../source/GENERATOR.c:10:6:config_peripherics	8	static
-../source/GENERATOR.c:29:6:run_config_loop	8	static
-../source/GENERATOR.c:33:6:handle_signal	8	static
+../source/GENERATOR.c:30:6:run_config_loop	8	static
+../source/GENERATOR.c:34:6:handle_signal	8	static

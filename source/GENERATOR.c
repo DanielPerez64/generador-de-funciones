@@ -20,8 +20,9 @@ void config_peripherics(void){
 	generator_init();
 
 	/* NVIC */
-	NVIC_enable_interrupt_and_priotity(UART0_IRQ, PRIORITY_10); //uart interrupt
-	NVIC_enable_interrupt_and_priotity(PIT_CH0_IRQ, PRIORITY_5); //pit interrupt
+	NVIC_set_basepri_threshold(PRIORITY_10); //lowest priority is 10
+	NVIC_enable_interrupt_and_priotity(UART0_IRQ, PRIORITY_6); // UART interrupt
+	NVIC_enable_interrupt_and_priotity(PIT_CH0_IRQ, PRIORITY_0); // PIT interrupt
 	NVIC_global_enable_interrupts;
 
 }
@@ -32,7 +33,16 @@ void run_config_loop(void){
 
 void handle_signal(void){
 
-	set_config_amplitude();
-	run_signal();
+	if(PIT_get_irq_status(kPIT_Chnl_0)){
+
+		read_ADC();
+		set_config_amplitude();
+		//run_signal();
+
+		PIT_clear_irq_status(kPIT_Chnl_0);
+
+
+	}
+
 
 }

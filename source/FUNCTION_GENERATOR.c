@@ -10,7 +10,7 @@
 //********************************************************************************
 
 // signal configuration struct
-static volatile signal_configuration signal_config = {0,0,0};
+static volatile signal_configuration signal_config = {0,0,0,0};
 static volatile uint8_t index = 0; // index for each sample of the array
 static volatile bool square_sig_st = true; // variable that will decide what will be happening with the square wave
 static uint32_t clock_pit;	// this static variable works for set the value for the clock
@@ -45,6 +45,12 @@ void run_signal(void){
 	}
 }
 
+void next_sample(void){
+
+	signal_config.index = (signal_config.index + 1) % MAX_COUNT;
+
+}
+
 //********************************************************************************
 
 void function_start(void){
@@ -68,31 +74,26 @@ void set_config_period(uint32_t period){
 
 void sin_function(void){
 
-	if(PIT_get_irq_status(kPIT_Chnl_0)){
-		index = 0;
-		PIT_clear_irq_status(kPIT_Chnl_0);
-	}
 
-	analog_Write_DAC( (signal_config.amplitude * sine_array[index])/FIX_POINT_SCALE );
-	index++;
+	uint32_t write_sine = (signal_config.amplitude * sine_array[signal_config.index])/FIX_POINT_SCALE;
+	analog_Write_DAC( write_sine );
+
 
 }
 
 void triangle_function(void){
 
-	if(PIT_get_irq_status(kPIT_Chnl_0)){
-		index = 0;
-		PIT_clear_irq_status(kPIT_Chnl_0);
-	}
 
-	analog_Write_DAC( (signal_config.amplitude * triangle_array[index])/FIX_POINT_SCALE );
-	index++;
+	uint32_t write_triangle = (signal_config.amplitude * triangle_array[signal_config.index])/FIX_POINT_SCALE;
+	analog_Write_DAC( write_triangle );
+
 }
 
 void square_function(void){
 
 	if( square_sig_st ){ // if its true then...
-		analog_Write_DAC(signal_config.amplitude);
+		uint32_t write_square = signal_config.amplitude;
+		analog_Write_DAC( write_square );
 		square_sig_st = false;
 	}
 	else{

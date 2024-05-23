@@ -17,15 +17,17 @@
 #define DELTA			16U
 #define ZERO_VOLTS		0
 #define FIX_POINT_SCALE	256U
+#define MAX_COUNT		16U
 
 /*
  * This structure contains the configuration for the generator to set a function to work
  */
 typedef struct {
 
-	uint32_t 	period;
-	uint32_t	amplitude;
-	uint8_t		function;
+	uint32_t 	period;	// the period that was selected from menu
+	uint32_t	amplitude; // the amplitude that is configured from ADC
+	uint8_t		function; //which function is selected
+	uint8_t		index; //sample index
 
 } signal_configuration;
 
@@ -41,16 +43,19 @@ typedef enum function_select{
 } funct_selection;
 
 typedef enum period_options{
+
 	_1KHZ 	= 1000u,
 	_5KHZ 	= 200u,
 	_10KHZ	= 100u,
 	_100KHZ = 10u
+
 } periods;
 
 void generator_init(void);
 
 /* RUN the signal  */
 void run_signal(void);
+void next_sample(void);
 
 /* HANDLE the functions to be used */
 void function_start(void);

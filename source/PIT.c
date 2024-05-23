@@ -6,6 +6,7 @@
  */
 
 #include "PIT.h"
+#include "FUNCTION_GENERATOR.h"
 
 volatile static uint8_t pitIsrFlag = false;
 
@@ -13,6 +14,11 @@ void PIT0_IRQHandler(void)
 {
     /* Clear interrupt flag.*/
     PIT_ClearStatusFlags(PIT, kPIT_Chnl_0, kPIT_TimerFlag);
+
+    //read_ADC(); // get the ADC current value
+    run_signal();
+    next_sample(); // move to the next sample
+
     pitIsrFlag = true;
 
     /* Added for, and affects, all PIT handlers. For CPU clock which is much larger than the IP bus clock,
@@ -49,7 +55,7 @@ void PIT_init(uint32_t clock_pit)
 	PIT_Init(PIT, &pitConfig);
 
 	/* Set timer period for channel 0 */
-	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(_2_SEC, clock_pit));
+	PIT_SetTimerPeriod(PIT, kPIT_Chnl_0, USEC_TO_COUNT(_1_SEC, clock_pit));
 
 	/* Enable timer interrupts for channel 0 */
 	PIT_EnableInterrupts(PIT, kPIT_Chnl_0, kPIT_TimerInterruptEnable);

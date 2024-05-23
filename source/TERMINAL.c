@@ -37,10 +37,14 @@ void menu_terminal(void){
 			if(ASCII_1 == get_mail()){
 
 				fsm_menu = FREQ_CONFIG;
+				clear_mail();
+
 			}
 			else if(ASCII_2 == get_mail()){
 
 				fsm_menu = SELECT_SIGNAL;
+				clear_mail();
+
 			}
 			else{
 				fsm_menu = MENU_ST;
@@ -56,43 +60,54 @@ void menu_terminal(void){
 			while(!get_flag()); //wait for mailbox
 
 			if(ASCII_ESC == get_mail()){
+
 				fsm_menu = MENU_ST;
+				clear_mail();
+
 			}
 			else if(ASCII_1 == get_mail()){
-				// set the frequency
-				set_config_period(_1KHZ);
+
 				// tell user that frequency has been selected
 				clear_flag();
 				idle_until_enter();
-
+				// set the frequency
+				set_config_period(_1KHZ);
+				clear_mail();
 
 			}
 			else if(ASCII_2 == get_mail()){
-				// set the frequency
-				set_config_period(_5KHZ);
+
 				// tell user that frequency has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the frequency
+				set_config_period(_5KHZ);
+				clear_mail();
 
 			}
 			else if(ASCII_3 == get_mail()){
-				// set the frequency
-				set_config_period(_10KHZ);
+
 				// tell user that frequency has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the frequency
+				set_config_period(_10KHZ);
+				clear_mail();
 
 			}
 			else if(ASCII_4 == get_mail()){
-				// set the frequency
-				set_config_period(_100KHZ);
+
 				// tell user that frequency has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the frequency
+				set_config_period(_100KHZ);
+				clear_mail();
 
 			}
 			else{
 				fsm_menu = FREQ_CONFIG;
+				clear_mail();
 			}
 
 			clear_flag();
@@ -106,33 +121,44 @@ void menu_terminal(void){
 
 			if(ASCII_ESC == get_mail()){
 				fsm_menu = MENU_ST;
+				clear_mail();
+
 			}
 			else if(ASCII_1 == get_mail()){
-				// set the signal
-				set_signal(SINE);
+
 				// tell user that signal has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the signal
+				set_signal(SINE);
+				clear_mail();
 
 			}
 			else if(ASCII_2 == get_mail()){
-				// set the signal
-				set_signal(TRIANGLE);
+
 				// tell user that signal has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the signal
+				set_signal(TRIANGLE);
+				clear_mail();
 
 			}
 			else if(ASCII_3 == get_mail()){
-				// set the signal
-				set_signal(SQUARE);
+
 				// tell user that signal has been selected
 				clear_flag();
 				idle_until_enter();
+				// set the signal
+				set_signal(SQUARE);
+				clear_mail();
 
 			}
 			else{
+
 				fsm_menu = SELECT_SIGNAL;
+				clear_mail();
+
 			}
 
 			clear_flag();
@@ -142,7 +168,7 @@ void menu_terminal(void){
 
 }
 
-static void show_menu(void){
+void show_menu(void){
 	uint8_t clear[]			= vt_100_clear;
 	uint8_t text1[] 		= "1. Seleccione frecuencia.";
 	uint8_t text2[] 		= "2. Seleccion de senial.";
@@ -150,7 +176,7 @@ static void show_menu(void){
 	uint8_t posxy_2[]		= "\033[11;21H";
 
 	/* PRINT TEXT TO THE UART */
-	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0]));
+	terminal_print_text(clear, 		sizeof(clear)/sizeof(clear[0]));
 	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
 	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
 	terminal_print_text(posxy_2, 	sizeof(posxy_2)/sizeof(posxy_2[0]));
@@ -158,7 +184,7 @@ static void show_menu(void){
 
 }
 
-static void show_set_freq(void){
+void show_set_freq(void){
 	uint8_t clear[]			= vt_100_clear;
 	uint8_t text1[] 		= "Seleccione frecuencia a generar.";
 	uint8_t text2[] 		= "1. 1KHz.";
@@ -172,7 +198,7 @@ static void show_set_freq(void){
 	uint8_t posxy_5[]		= "\033[15;21H";
 
 	/* PRINT TEXT TO THE UART */
-	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0])); //clear screen
+	terminal_print_text(clear, 		sizeof(clear)/sizeof(clear[0])); //clear screen
 	/* print the message*/
 	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
 	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
@@ -186,7 +212,7 @@ static void show_set_freq(void){
 	terminal_print_text(text5, 		sizeof(text5)/sizeof(text5[0]));
 }
 
-static void show_set_signal(void){
+void show_set_signal(void){
 	uint8_t clear[]			= vt_100_clear;
 	uint8_t text1[] 		= "Selecciona la senial.";
 	uint8_t text2[] 		= "1. Senoidal.";
@@ -199,7 +225,7 @@ static void show_set_signal(void){
 	uint8_t posxy_4[]		= "\033[14;21H";
 
 	/* PRINT TEXT TO THE UART */
-	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0])); // clear screen
+	terminal_print_text(clear, 		sizeof(clear)/sizeof(clear[0])); // clear screen
 	// print the message
 	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
 	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
@@ -213,20 +239,20 @@ static void show_set_signal(void){
 
 }
 
-static void selection_msg(void){
+void selection_msg(void){
 	uint8_t clear[]			= vt_100_clear;
 	uint8_t text1[] 		= "Se ha seleccionado la frecuencia, presione enter.";
 	uint8_t posxy_1[]		= "\033[10;21H";
 
 	/* PRINT TEXT TO THE UART */
-	terminal_print_text(clear, 	sizeof(clear)/sizeof(clear[0])); // clear screen
+	terminal_print_text(clear, 		sizeof(clear)/sizeof(clear[0])); // clear screen
 	// print the message
 	terminal_print_text(posxy_1, 	sizeof(posxy_1)/sizeof(posxy_1[0]));
 	terminal_print_text(text1, 		sizeof(text1)/sizeof(text1[0]));
 
 }
 
-static void idle_until_enter(void){
+void idle_until_enter(void){
 
 	while(!get_flag()){
 		if(ASCII_ENTER == get_mail()){

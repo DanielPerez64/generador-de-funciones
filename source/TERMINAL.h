@@ -68,17 +68,17 @@ void terminal_print_text(uint8_t *message, uint8_t length);
 void menu_terminal(void);
 
 /* MAIN MENUS */
-static void show_menu(void);
+void show_menu(void);
 
 /* FREQUENCY SELECTION MENU */
-static void show_set_freq(void);
+void show_set_freq(void);
 
 /* SIGNAL SELECTION MENU */
-static void show_set_signal(void);
+void show_set_signal(void);
 
 /* SELECTION ASSERTED */
-static void selection_msg(void);
+void selection_msg(void);
 
-static void idle_until_enter(void);
+void idle_until_enter(void);
 
 #endif /* TERMINAL_H_ */
