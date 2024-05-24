@@ -2,4 +2,4 @@ C:\TAE_DM\DAC\generador\drivers/fsl_adc16.h:367:20:ADC16_EnableHardwareTrigger	1
 C:\TAE_DM\DAC\generador\drivers/fsl_adc16.h:491:24:ADC16_GetChannelConversionValue	16	static
 ../source/GENERADOR_ADC.c:16:6:ADC_init	8	static
 ../source/GENERADOR_ADC.c:35:6:read_ADC	8	static
-../source/GENERADOR_ADC.c:44:10:get_amp	4	static
+../source/GENERADOR_ADC.c:45:10:get_amp	4	static

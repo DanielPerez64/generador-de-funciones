@@ -69,7 +69,6 @@ void menu_terminal(void){
 
 				// tell user that frequency has been selected
 				clear_flag();
-				//stop_timer();
 				idle_until_enter();
 				// set the frequency
 				set_config_period(_1KHZ);
@@ -80,7 +79,6 @@ void menu_terminal(void){
 
 				// tell user that frequency has been selected
 				clear_flag();
-				//stop_timer();
 				idle_until_enter();
 				// set the frequency
 				set_config_period(_500HZ);

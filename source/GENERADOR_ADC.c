@@ -39,9 +39,10 @@ void read_ADC(void){
 	{
 	}
 	Voltaje_out = ADC16_GetChannelConversionValue(ADC16, ADC16_CHANNEL_GROUP);
+
 }
 
 uint32_t get_amp(void){
 
-	return Voltaje_out;
+	return ((Voltaje_out*2854)/4095)+1241;
 }
